@@ -41,9 +41,18 @@ function Checkout(props) {
 		loggedIn.push('hide')
 	}
 
+	
+
 	// Cart Items
-    const items = props.cart.cartItems;
-    const cartPriceTotal = items.reduce((prev, cur) => prev + cur.price*cur.quantity, 0);
+	const items = props.cart.cartItems;
+	// Check item in cart
+	if(items.length === 0){
+		props.history.push('/shop')
+	}
+
+	const cartPriceTotal = items.reduce((prev, cur) => prev + cur.price*cur.quantity, 0);
+	
+
 
     const cartItems = items.map(item => {
         return (
@@ -52,7 +61,7 @@ function Checkout(props) {
     })
 
 
-    console.log('Checkout', props.auth.isAuthenticated)
+    console.log('Checkout in', items.length)
 
     return (
         <>
@@ -85,7 +94,7 @@ function Checkout(props) {
         					<div className={loginClass.join(' ')}>
 								<p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
 
-								<Login  history={props.history}/>         						
+								{ !props.auth.isAuthenticated ? <Login  history={props.history}/>  : null }       						
         					</div>
         					<div className="checkout_info">
         						<span>Have a coupon? </span>

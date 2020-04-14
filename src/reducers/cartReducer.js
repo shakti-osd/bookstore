@@ -31,8 +31,8 @@ import {
 
 
   export const addItemToCart = (cartItems, cartItemToAdd) => {
-     console.log('cartItems', cartItems)
-     console.log('cartItemToAdd',cartItemToAdd)
+     //console.log('cartItems', cartItems)
+    // console.log('cartItemToAdd',cartItemToAdd)
      const existingCartItem = cartItems.find(
        cartItem => cartItem.id === cartItemToAdd.id
      );

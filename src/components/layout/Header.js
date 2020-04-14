@@ -3,7 +3,18 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import CartMini from '../shop/Cart-Mini'
 
+import {logoutUser} from '../../actions/authActions'
+
 function Header(props) {
+	// Logout User
+	const onLogoutClick = (e) => {
+		e.preventDefault();
+		//props.clearCurrentProfile();
+		props.logoutUser();
+	  }
+
+	const { isAuthenticated } = props.auth;
+
 	// toggle Hearder Search
 	const [searchToggle, setSearchToggle] = useState({addClass:false})	
 	const toggleSearch = () => {
@@ -212,8 +223,14 @@ function Header(props) {
 														<span><NavLink to="#">Compare Product</NavLink></span>
 														<span><NavLink to="#">My Account</NavLink></span>
 														<span><NavLink to="#">My Wishlist</NavLink></span>
-														<span><NavLink to="#">Sign In</NavLink></span>
-														<span><NavLink to="/create-account">Create An Account</NavLink></span>
+														{isAuthenticated ? <span><a
+															href=""
+															onClick={onLogoutClick}
+															className="nav-link"
+														>Logout</a></span> :
+														<span><NavLink to="/create-account">Sign In/Sign Up</NavLink></span>
+														}
+														
 													</div>
 												</div>
 											</div>
@@ -291,10 +308,11 @@ function Header(props) {
 }
 
 const mapStateToProps = state => ({
-    cart: state.cart
+	cart: state.cart,
+	auth: state.auth
   });
   
   export default connect(
     mapStateToProps,
-    null
+    { logoutUser }
   )(Header);

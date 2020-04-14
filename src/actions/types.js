@@ -16,4 +16,5 @@ export const DELETE_POST = 'DELETE_POST';
 export const ADD_ITEM = 'ADD_ITEM'
 export const REMOVE_ITEM = 'REMOVE_ITEM'
 
-export const API_URL = 'https://bookstore-api-osd.herokuapp.com'
+//export const API_URL = 'https://bookstore-api-osd.herokuapp.com'
+export const API_URL = 'http://localhost:5000/api'

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 class Address extends Component {
@@ -17,8 +18,8 @@ class Address extends Component {
 
 
     render() {
-        const { country, region } = this.state;
-
+		const { country, region } = this.state;
+		const {user} = this.props.auth
         return (
             <>
               <div className="col-lg-6 col-12">
@@ -28,7 +29,7 @@ class Address extends Component {
         						<div className="margin_between">
 	        						<div className="input_box space_between">
 	        							<label>First name <span>*</span></label>
-	        							<input type="text" />
+	        							<input type="text" value={user ? user.name : null} readOnly />
 	        						</div>
 	        						<div className="input_box space_between">
 	        							<label>last name <span>*</span></label>
@@ -168,4 +169,11 @@ class Address extends Component {
     }
 }
 
-export default Address
+const mapStateToProps = state => ({
+	auth: state.auth
+  });
+
+
+  export default connect(
+    mapStateToProps
+  )(Address);
