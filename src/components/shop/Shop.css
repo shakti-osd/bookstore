@@ -36,3 +36,6 @@
 
 .checkout_accordion .payment{padding: 30px 50px;}
 .test-warning{padding: 10px 0;}
+
+.wishlist-table .product-thumbnail img{max-width: 100px;}
+.product-remove{text-align: center;}

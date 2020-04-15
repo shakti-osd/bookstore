@@ -1,9 +1,73 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import { NavLink } from 'react-router-dom'
+
+import {contactSubmit} from '../../actions/contactAction'
+import TextFieldGroup from '../common/TextFieldGroup';
 
 import './Contact.css'
 
-function Contact() {
+class Contact extends Component {
+	constructor(props) {
+		super(props)
+	
+		this.state = {
+			fname: '',
+			lname: '',
+			email: '',
+			website: '',
+			subject: '',
+			message: '',
+			errors: {}
+		  };
+	  
+		  this.onChange = this.onChange.bind(this);
+		  this.onSubmit = this.onSubmit.bind(this);
+	}
+
+
+	static getDerivedStateFromProps(nextProps, prevState) {
+
+		if (nextProps.errors !== prevState.errors) {
+		  return { errors: nextProps.errors };
+		}   
+	
+		return null
+	  }
+	
+	  componentDidUpdate(prevProps, prevState) {
+		if (prevProps.errors !== this.props.errors) {
+		  this.setState({ errors: this.props.errors })
+		}
+	  }
+
+
+
+	onChange(e) {
+		this.setState({ [e.target.name]: e.target.value });
+	  }
+	
+	  onSubmit(e) {
+		e.preventDefault();
+	
+		const contactMsg = {
+		  fname: this.state.fname,
+		  lname: this.state.lname,
+		  email: this.state.email,
+		  website: this.state.website,
+		  subject: this.state.subject,
+		  message: this.state.message
+		};
+		//console.log(contactMsg)
+		this.props.contactSubmit(contactMsg, this.props.history);
+	  }
+	
+
+	render(){	
+
+		const { errors } = this.state;	
+		console.log('errors', errors)
+	
     return (
         <div>
             <div className="ht__bradcaump__area bg-image--6">
@@ -39,20 +103,56 @@ function Contact() {
         				<div className="contact-form-wrap">
         					<h2 className="contact__title">Get in touch</h2>
         					<p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. </p>
-                            <form id="contact-form" action="#" method="post">
+                            <form onSubmit={this.onSubmit}>
                                 <div className="single-contact-form space-between">
-                                    <input type="text" name="firstname" placeholder="First Name*" />
-                                    <input type="text" name="lastname" placeholder="Last Name*" />
+								<TextFieldGroup
+									placeholder="First Name*"
+									name="fname"
+									value={this.state.fname}
+									onChange={this.onChange}
+									error={errors.fname}
+								/>
+                                <TextFieldGroup
+									placeholder="Last Name*"
+									name="lname"
+									value={this.state.lname}
+									onChange={this.onChange}
+									error={errors.lname}
+								/>
                                 </div>
                                 <div className="single-contact-form space-between">
-                                    <input type="email" name="email" placeholder="Email*" />
-                                    <input type="text" name="website" placeholder="Website*" />
+								<TextFieldGroup
+									placeholder="Email*"
+									name="email"
+									value={this.state.email}
+									onChange={this.onChange}
+									error={errors.email}
+								/>
+                                <TextFieldGroup
+									placeholder="Website*"
+									name="website"
+									value={this.state.website}
+									onChange={this.onChange}
+									error={errors.website}
+								/>
                                 </div>
                                 <div className="single-contact-form">
-                                    <input type="text" name="subject" placeholder="Subject*" />
+								<TextFieldGroup
+									placeholder="Subject*"
+									name="subject"
+									value={this.state.subject}
+									onChange={this.onChange}
+									error={errors.subject}
+								/>
                                 </div>
                                 <div className="single-contact-form message">
-                                    <textarea name="message" placeholder="Type your message here.."></textarea>
+								<TextFieldGroup
+									placeholder="Message*"
+									name="message"
+									value={this.state.message}
+									onChange={this.onChange}
+									error={errors.message}
+								/>
                                 </div>
                                 <div className="contact-btn">
                                     <button type="submit">Send Email</button>
@@ -112,7 +212,15 @@ function Contact() {
 
 
         </div>
-    )
+	)
+	
+	}
 }
 
-export default Contact
+const mapStateToProps = state => ({
+	auth: state.auth,
+	errors: state.errors,
+	contact: state.contact
+  });
+  
+  export default connect(mapStateToProps, { contactSubmit })(Contact);

@@ -13,11 +13,13 @@ import About from './components/pages/About'
 import Contact from './components/pages/Contact'
 import Faq from './components/pages/Faq'
 import Team from './components/pages/Team'
+import ThankYou from './components/pages/ThankYou'
 import NotFound from './components/not-found/NotFound'
 
 import CreateAccount from './components/pages/Create-Account'
 import Shop from './components/shop/Shop'
 import Cart from './components/shop/Cart'
+import Wishlist from './components/shop/Wishlist'
 import Checkout from './components/shop/Checkout'
 import SingleProduct from './components/shop/Single-Product'
 
@@ -61,11 +63,13 @@ class App extends Component {
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/faq" component={Faq} />
               <Route exact path="/team" component={Team} />
+              <Route exact path="/thank-you" component={ThankYou} />
 
               <Route exact path="/create-account" component={CreateAccount} />
               <Route exact path="/shop" component={Shop} />
               <Route exact path="/single-product/:id" component={SingleProduct} />
               <Route exact path="/cart" component={Cart} />
+              <Route exact path="/wishlist" component={Wishlist} />
               <Route exact path="/checkout" component={Checkout} />
               <Route component={NotFound} />
             </Switch>

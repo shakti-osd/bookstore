@@ -7,12 +7,14 @@ import authReducer from './authReducer';
 import errorReducer from './errorReducer';
 import profileReducer from './profileReducer';
 import postReducer from './postReducer';
-import cartReducer from './cartReducer'
+import cartReducer from './cartReducer';
+import wishlistReducer from './wishlistReducer';
+import contactReducer from './contactReducer';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['cart']
+  whitelist: ['cart','wishlist','contact']
 };
 
 
@@ -22,7 +24,9 @@ const rootReducer = combineReducers({
   errors: errorReducer,
   profile: profileReducer,
   post: postReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  wishlist: wishlistReducer,
+  contact: contactReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

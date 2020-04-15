@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import {addItem} from '../../actions/cartAction'
+import {addWishlistItem, removeWishlistItem} from '../../actions/wishListAction'
 
 function ShopGrid(props) {
     const productUrl = '/single-product/';
@@ -27,7 +28,7 @@ function ShopGrid(props) {
                         <div className="actions_inner">
                             <ul className="add_to_links">                                
                                 <li><span className="cart" onClick={() => props.addItem(props.product)}><i className="bi bi-shopping-bag4"></i></span></li>
-                                <li><NavLink  className="wishlist" to="wishlist.html"><i className="bi bi-shopping-cart-full"></i></NavLink></li>
+                                <li><span  className="wishlist" onClick={() => props.addWishlistItem(props.product)}><i className="bi bi-shopping-cart-full"></i></span></li>
                                 <li><NavLink  className="compare" to="#"><i className="bi bi-heart-beat"></i></NavLink></li>
                                 <li><NavLink  data-toggle="modal" title="Quick View" className="quickview modal-view detail-link" to="#productmodal"><i className="bi bi-search"></i></NavLink></li>
                             </ul>
@@ -54,7 +55,9 @@ const mapStateToProps = state => ({
   });
 
 const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item))
+    addItem: item => dispatch(addItem(item)),
+    addWishlistItem: item => dispatch(addWishlistItem(item)),
+    removeWishlistItem: item => dispatch(removeWishlistItem(item))
   });
   
   export default connect(

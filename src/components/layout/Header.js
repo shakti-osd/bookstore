@@ -124,7 +124,7 @@ function Header(props) {
 								<li className="drop"><NavLink to="#">Pages</NavLink>
 									<div className="megamenu dropdown">
 										<ul className="item item01">
-											<li><NavLink to="/about">About Page</NavLink></li>
+											<li><NavLink to="/about">About</NavLink></li>
 											<li className="label2"><NavLink to="/">Portfolio</NavLink>
 												<ul>
 													<li><NavLink to="/">Portfolio</NavLink></li>
@@ -133,11 +133,11 @@ function Header(props) {
 											</li>
 											<li><NavLink to="/my-account">My Account</NavLink></li>
 											<li><NavLink to="/cart">Cart Page</NavLink></li>
-											<li><NavLink to="/checkout">Checkout Page</NavLink></li>
-											<li><NavLink to="/">Wishlist Page</NavLink></li>
+											<li><NavLink to="/checkout">Checkout</NavLink></li>
+											<li><NavLink to="/wishlist">Wishlist</NavLink></li>
 											
-											<li><NavLink to="/faq">Faq Page</NavLink></li>
-											<li><NavLink to="/team">Team Page</NavLink></li>
+											<li><NavLink to="/faq">Faq</NavLink></li>
+											<li><NavLink to="/team">Team</NavLink></li>
 										</ul>
 									</div>
 								</li>
@@ -156,7 +156,7 @@ function Header(props) {
 					<div className="col-md-6 col-sm-6 col-6 col-lg-2">
 						<ul className="header__sidebar__right d-flex justify-content-end align-items-center">
 							<li className="shop_search"><NavLink onClick={toggleSearch} className="search__active" to="#"></NavLink></li>
-							<li className="wishlist"><NavLink to="#"></NavLink></li>
+							<li className="wishlist"><NavLink to="/wishlist"></NavLink></li>
 							<li className="shopcart">
 								<NavLink onClick={toggleMiniCart} className="cartbox_active" to="#">
 									<span className="product_qun">{totalItems}</span>
@@ -222,7 +222,7 @@ function Header(props) {
 													<div className="setting__menu">
 														<span><NavLink to="#">Compare Product</NavLink></span>
 														<span><NavLink to="#">My Account</NavLink></span>
-														<span><NavLink to="#">My Wishlist</NavLink></span>
+														<span><NavLink to="/wishlist">My Wishlist</NavLink></span>
 														{isAuthenticated ? <span><a
 															href=""
 															onClick={onLogoutClick}
@@ -258,11 +258,11 @@ function Header(props) {
 										</li>
 										<li><NavLink to="/my-account">My Account</NavLink></li>
 										<li><NavLink to="/cart">Cart Page</NavLink></li>
-										<li><NavLink to="/checkout">Checkout Page</NavLink></li>
-										<li><NavLink to="/">Wishlist Page</NavLink></li>
+										<li><NavLink to="/checkout">Checkout</NavLink></li>
+										<li><NavLink to="/wishlist">Wishlist</NavLink></li>
 										
-										<li><NavLink to="/">Faq Page</NavLink></li>
-										<li><NavLink to="/team">Team Page</NavLink></li>
+										<li><NavLink to="/">Faq</NavLink></li>
+										<li><NavLink to="/team">Team</NavLink></li>
 									</ul>
 								</li>
 								<li><NavLink to="/shop">Shop</NavLink>
@@ -273,7 +273,7 @@ function Header(props) {
 								</li>
 								<li><NavLink to="/">Blog</NavLink>
 									<ul>
-										<li><NavLink to="/">Blog Page</NavLink></li>
+										<li><NavLink to="/">Blog</NavLink></li>
 										<li><NavLink to="/">Blog Details</NavLink></li>
 									</ul>
 								</li>
